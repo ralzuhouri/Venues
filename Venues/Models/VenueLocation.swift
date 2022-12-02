@@ -10,7 +10,7 @@ import Foundation
 struct VenueLocation: Codable {
     let address: String
     let country: String
-    let crossStreet: String
+    let crossStreet: String?
     let formattedAddress: String
     let locality: String
     let neighborhood: [String]?

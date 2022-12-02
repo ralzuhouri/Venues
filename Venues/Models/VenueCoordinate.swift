@@ -8,6 +8,10 @@
 import Foundation
 
 struct VenueCoordinate: Codable {
-    let latitude: Int
-    let longitude: Int
+    let latitude: Double
+    let longitude: Double
+    
+    func compactStringRepresentation() -> String {
+        return "\(latitude),\(longitude)"
+    }
 }

@@ -19,7 +19,7 @@ struct Venue: Codable {
     let timezone: String
     
     enum CodingKeys: String, CodingKey {
-        case id = "fsd_id"
+        case id = "fsq_id"
         case categories = "categories"
         case chains = "chains"
         case distance = "distance"

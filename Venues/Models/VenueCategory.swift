@@ -8,7 +8,7 @@
 import Foundation
 
 struct VenueCategory: Codable {
-    let id: String
+    let id: Int
     let name: String
     let icon: VenueIcon
 }
