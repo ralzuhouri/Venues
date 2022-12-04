@@ -15,7 +15,11 @@ struct VenueCoordinate: Codable {
         return "\(latitude),\(longitude)"
     }
     
+    static var amsterdam: VenueCoordinate {
+        VenueCoordinate(latitude: 52.3676, longitude: 4.9041)
+    }
+    
     static var mock: VenueCoordinate {
-        return VenueCoordinate(latitude: 52.3874, longitude: 4.6462)
+        return .amsterdam
     }
 }
