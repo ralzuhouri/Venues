@@ -25,4 +25,11 @@ final class VenuesServiceTests: XCTestCase {
             XCTAssertLessThan(venue.distance, 1000)
         }
     }
+    
+    func testQueryPhotos() async throws {
+        let venueId = "4c53dc97fd2ea59329c92329"
+        
+        let photos = try await sut.queryVenuePhotos(venueId: venueId, limit: 1)
+        XCTAssertEqual(photos.count, 1)
+    }
 }
