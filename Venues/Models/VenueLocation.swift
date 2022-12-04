@@ -27,4 +27,15 @@ struct VenueLocation: Codable {
         case postcode = "postcode"
         case region = "region"
     }
+    
+    static var mock: VenueLocation {
+        return VenueLocation(address: "Zijlweg 86rd",
+                             country: "NL",
+                             crossStreet: nil,
+                             formattedAddress: "Zijlweg 86rd, 2013 DL Haarlem",
+                             locality: "Haarlem",
+                             neighborhood: nil,
+                             postcode: "2013DL",
+                             region: "North Holland")
+    }
 }

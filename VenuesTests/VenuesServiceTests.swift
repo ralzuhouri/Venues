@@ -12,7 +12,7 @@ final class VenuesServiceTests: XCTestCase {
     let sut = VenuesService()
 
     func testSearchPlaces() async throws {
-        let location = VenueCoordinate(latitude: 52.3874, longitude: 4.6462)
+        let location: VenueCoordinate = .mock
         
         let venues = try await sut.searchVenues(location: location,
                                                 limit: 10,

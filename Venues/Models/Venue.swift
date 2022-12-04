@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Venue: Codable {
+struct Venue: Codable, Identifiable {
     let id: String
     let categories: [VenueCategory]
     let chains: [VenueChain]
@@ -28,5 +28,17 @@ struct Venue: Codable {
         case location = "location"
         case name = "name"
         case timezone = "timezone"
+    }
+    
+    static var mock: Venue {
+        return Venue(id: "",
+                     categories: [],
+                     chains: [],
+                     distance: 40,
+                     geocodes: .mock,
+                     link: "http:\\mock.com",
+                     location: .mock,
+                     name: "Mock",
+                     timezone: "")
     }
 }

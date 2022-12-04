@@ -10,4 +10,8 @@ import Foundation
 struct VenueGeocodes: Codable {
     let main: VenueCoordinate
     let roof: VenueCoordinate
+    
+    static var mock: VenueGeocodes {
+        return VenueGeocodes(main: .mock, roof: .mock)
+    }
 }
