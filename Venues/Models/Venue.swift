@@ -11,7 +11,7 @@ struct Venue: Codable, Identifiable {
     let id: String
     let categories: [VenueCategory]
     let chains: [VenueChain]
-    let distance: Int
+    let distance: Int // meters
     let geocodes: VenueGeocodes
     let link: String
     let location: VenueLocation
@@ -40,5 +40,19 @@ struct Venue: Codable, Identifiable {
                      location: .mock,
                      name: "Mock",
                      timezone: "")
+    }
+    
+    func formattedCategoriesText() -> String {
+        guard let first = categories.first else {
+            return "No Category Found"
+        }
+        
+        var text = "\(first.name)"
+        
+        for category in categories.dropFirst() {
+            text.append(", " + category.name)
+        }
+        
+        return text
     }
 }

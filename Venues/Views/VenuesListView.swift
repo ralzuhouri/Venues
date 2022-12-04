@@ -25,11 +25,14 @@ struct VenuesListView: View {
                 LazyVStack {
                     ForEach(venues) { venue in
                         VenueItemView(venue: venue)
-                            .padding(.bottom, 8)
                     }
                 }
+                .padding(.vertical, 16)
+                .padding(.horizontal, 8)
             }
-        }.onAppear {
+        }
+        .navigationTitle("Venues")
+        .onAppear {
             viewModel.searchVenues(location: .mock)
         }
     }

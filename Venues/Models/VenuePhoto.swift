@@ -23,4 +23,16 @@ struct VenuePhoto: Codable {
         case width = "width"
         case height = "height"
     }
+    
+    func photoUrl(size: CGSize? = nil) -> String {
+        let sizeComponent: String
+        
+        if let size = size {
+            sizeComponent = "\(Int(size.width))x\(Int(size.width))"
+        } else {
+            sizeComponent = "original/"
+        }
+        
+        return prefix + sizeComponent + suffix
+    }
 }

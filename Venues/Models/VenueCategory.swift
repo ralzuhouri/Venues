@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct VenueCategory: Codable {
+struct VenueCategory: Codable, Identifiable {
     let id: Int
     let name: String
     let icon: VenueIcon

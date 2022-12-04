@@ -11,7 +11,9 @@ import SwiftUI
 struct VenuesApp: App {
     var body: some Scene {
         WindowGroup {
-            VenuesListView()
+            NavigationStack {
+                VenuesListView()
+            }
         }
     }
 }
