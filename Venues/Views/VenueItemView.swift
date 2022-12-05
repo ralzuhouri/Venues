@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct VenueItemView: View {
-    let service = VenuesService()
-    
     @State var venue: Venue
-    @State var venuePhoto: VenuePhoto?
-    @State var photoSize = CGSize(width: 72, height: 72)
+    @State private var venuePhoto: VenuePhoto?
+    @State private var photoSize = CGSize(width: 72, height: 72)
     @State private var noPhotoAvailable: Bool = false
+    
+    private let service = VenuesService()
 
     init(venue: Venue) {
         _venue = State(initialValue: venue)

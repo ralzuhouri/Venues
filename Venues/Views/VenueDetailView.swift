@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct VenueDetailView: View {
-    let service = VenuesService()
-    
     @State var venue: Venue
-    @State var photos: [VenuePhoto] = []
-    @State var isLoadingPhotos: Bool = false
+    @State private var photos: [VenuePhoto] = []
+    @State private var isLoadingPhotos: Bool = false
+    
+    private let service = VenuesService()
     
     init(venue: Venue) {
         _venue = State(initialValue: venue)

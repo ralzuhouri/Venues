@@ -15,7 +15,7 @@ struct VenuePhotoView: View {
     
     @State var venuePhoto: VenuePhoto
     @State var size: CGSize
-    @State var photoUrl: URL?
+    @State private var photoUrl: URL?
     
     private var placeholderImage: some View {
         return ProgressView()

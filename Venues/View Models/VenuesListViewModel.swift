@@ -8,12 +8,12 @@
 import Foundation
 
 @MainActor class VenuesListViewModel: ObservableObject {
-    let service = VenuesService()
-    
     @Published var venues: [Venue] = []
     @Published var isLoading: Bool = false
     @Published var didEncounterError: Bool = false
     @Published var errorDescription: String?
+    
+    private let service = VenuesService()
     
     func searchVenues(location: VenueCoordinate,
                       query: String? = nil,
