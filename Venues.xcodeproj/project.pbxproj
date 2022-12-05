@@ -54,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		2D0BCE20293E3D8F005B5853 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
+		2D0BCE22293E4368005B5853 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		2D2D5947293A18C600C857E5 /* VenueLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueLocation.swift; sourceTree = "<group>"; };
 		2D2D5949293A1D6D00C857E5 /* VenueCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategory.swift; sourceTree = "<group>"; };
 		2D2D594B293A1E3E00C857E5 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
@@ -187,6 +188,7 @@
 		2DF2C67E29361049006D5C80 /* Venues */ = {
 			isa = PBXGroup;
 			children = (
+				2D0BCE22293E4368005B5853 /* README.md */,
 				2DF2C67F29361049006D5C80 /* VenuesApp.swift */,
 				2D2D5971293CEF9F00C857E5 /* Helpers */,
 				2D2D596A293A9D6200C857E5 /* View Models */,
