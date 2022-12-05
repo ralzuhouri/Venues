@@ -54,8 +54,7 @@ struct VenueItemView: View {
                     VenuePhotoView(venuePhoto: venuePhoto, size: .custom(photoSize))
                 } else {
                     VenuePhotoView(venuePhoto: .mock,
-                                   size: .custom(photoSize),
-                                   isPlaceholder: true)
+                                   size: .custom(photoSize))
                         .redacted(reason: .placeholder)
                 }
             }

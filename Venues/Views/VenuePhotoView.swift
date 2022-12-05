@@ -16,7 +16,6 @@ struct VenuePhotoView: View {
     @State var venuePhoto: VenuePhoto
     @State var size: CGSize
     @State var photoUrl: URL?
-    @State var isPlaceholder: Bool
     
     private var placeholderImage: some View {
         return ProgressView()
@@ -27,7 +26,6 @@ struct VenuePhotoView: View {
     
     init(venuePhoto: VenuePhoto, size: Size, isPlaceholder: Bool = false) {
         _venuePhoto = State(initialValue: venuePhoto)
-        _isPlaceholder = State(initialValue: isPlaceholder)
         
         switch size {
         case .original:
@@ -58,10 +56,6 @@ struct VenuePhotoView: View {
         }
         .onAppear {
             Task {
-                guard !isPlaceholder else {
-                    return
-                }
-                
                 let photoSize = CGSize(width: min(size.width, CGFloat(venuePhoto.width)),
                                        height: min(size.height, CGFloat(venuePhoto.height)))
                 
