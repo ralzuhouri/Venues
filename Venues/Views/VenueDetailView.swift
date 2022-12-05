@@ -33,6 +33,7 @@ struct VenueDetailView: View {
                         
                         Spacer()
                     }
+                    .frame(width: 300, height: 300)
                 } else {
                     HStack {
                         ForEach(photos) { photo in
