@@ -13,6 +13,7 @@ struct VenueItemView: View {
     @State var venue: Venue
     @State var venuePhoto: VenuePhoto?
     @State var photoSize = CGSize(width: 72, height: 72)
+    @State private var noPhotoAvailable: Bool = false
 
     init(venue: Venue) {
         _venue = State(initialValue: venue)
@@ -45,10 +46,11 @@ struct VenueItemView: View {
                     }
                 }
                 .padding(.leading, 8)
+                .padding(.bottom, 8)
                 
                 Spacer()
                 
-                if let venuePhoto = venuePhoto {
+                if let venuePhoto = venuePhoto, !noPhotoAvailable {
                     VenuePhotoView(venuePhoto: venuePhoto, size: .custom(photoSize))
                 } else {
                     VenuePhotoView(venuePhoto: .mock,
@@ -72,12 +74,13 @@ struct VenueItemView: View {
                                                                 limit: 1)
                 
                 guard let photo = photos.first else {
+                    noPhotoAvailable = true
                     return
                 }
                 
-                venuePhoto = photo
                 photoSize = CGSize(width: min(photoSize.width, CGFloat(photo.width)),
                                    height: min(photoSize.height, CGFloat(photo.height)))
+                venuePhoto = photo
             }
         }
     }

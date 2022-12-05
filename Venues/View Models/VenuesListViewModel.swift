@@ -16,6 +16,7 @@ import Foundation
     @Published var errorDescription: String?
     
     func searchVenues(location: VenueCoordinate,
+                      query: String? = nil,
                       limit: Int? = nil,
                       openNow: Bool = true,
                       radius: Int? = nil) {
@@ -24,6 +25,7 @@ import Foundation
             
             do {
                 venues = try await service.searchVenues(location: location,
+                                                        query: query,
                                                         limit: limit,
                                                         openNow: openNow,
                                                         radius: radius)

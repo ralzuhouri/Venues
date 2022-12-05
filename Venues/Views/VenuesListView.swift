@@ -15,6 +15,7 @@ struct VenuesListView: View {
     @StateObject var viewModel = VenuesListViewModel()
     
     @State private var isUsingDefaultLocation: Bool = true
+    @State private var searchText: String = ""
     
     var body: some View {
         ScrollView {
@@ -38,8 +39,11 @@ struct VenuesListView: View {
                 
                 Spacer()
                 
-                Button("Search") {
-                    viewModel.searchVenues(location: VenueCoordinate(coordinate: locationManager.coordinate), limit: 20)
+                Button {
+                    searchVenues(coordinate: locationManager.coordinate)
+                } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                        .font(.system(size: 24))
                 }
             }
             .padding(.horizontal, 16)
@@ -52,26 +56,49 @@ struct VenuesListView: View {
                         let errorDescription = viewModel.errorDescription {
                 Text(errorDescription)
                     .foregroundColor(.red)
+                    .font(.system(size: 16, weight: .medium))
                     .padding(.top, 16)
             } else if let venues = viewModel.venues {
-                LazyVStack {
-                    ForEach(venues) { venue in
-                        VenueItemView(venue: venue)
+                if venues.isEmpty {
+                    Text("No Venues Found")
+                        .foregroundColor(.red)
+                        .font(.system(size: 16, weight: .medium))
+                        .padding(.top, 16)
+                } else {
+                    LazyVStack {
+                        ForEach(venues) { venue in
+                            VenueItemView(venue: venue)
+                        }
                     }
+                    .padding(.vertical, 16)
+                    .padding(.horizontal, 8)
                 }
-                .padding(.vertical, 16)
-                .padding(.horizontal, 8)
             }
         }
         .navigationTitle("Venues")
         .onAppear {
             locationManager.requestAuthorization()
-            viewModel.searchVenues(location: .amsterdam, limit: 20)
+            searchVenues(coordinate: .amsterdam)
         }
         .onChange(of: locationManager.coordinate) { newCoordinate in
             isUsingDefaultLocation = false
-            viewModel.searchVenues(location: VenueCoordinate(coordinate: newCoordinate), limit: 20)
+            searchVenues(coordinate: newCoordinate)
         }
+        .onChange(of: searchText) { _ in
+            searchVenues(coordinate: locationManager.coordinate)
+        }
+        .searchable(text: $searchText, prompt: "Search any place")
+    }
+}
+
+// MARK: - Queries
+private extension VenuesListView {
+    func searchVenues(coordinate: CLLocationCoordinate2D) {
+        searchVenues(coordinate: VenueCoordinate(coordinate: coordinate))
+    }
+    
+    func searchVenues(coordinate: VenueCoordinate) {
+        viewModel.searchVenues(location: coordinate, query: searchText, limit: 20)
     }
 }
 

@@ -47,6 +47,7 @@ class VenuesService {
     }
     
     func searchVenues(location: VenueCoordinate,
+                      query: String? = nil,
                       limit: Int? = nil,
                       openNow: Bool = true,
                       radius: Int? = nil) async throws -> [Venue] {
@@ -57,6 +58,10 @@ class VenuesService {
                     "open_now": openNow.description,
                     "sort": "DISTANCE"
                 ]
+                
+                if let query = query {
+                    parameters["query"] = query
+                }
                 
                 if let limit = limit {
                     parameters["limit"] = limit
