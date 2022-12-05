@@ -19,22 +19,55 @@ struct VenueDetailView: View {
     }
     
     var body: some View {
-        VStack {
-            ScrollView(.horizontal, showsIndicators: false) {
+        VStack(alignment: .leading) {
+            Text(venue.formattedCategoriesText())
+                .font(.system(size: 16, weight: .light))
+                .padding(.leading, 16)
+            
+            ScrollView(.horizontal, showsIndicators: true) {
                 if isLoadingPhotos {
-                    ProgressView()
-                } else {
-                    ForEach(photos) { photo in
-                        VenuePhotoView(venuePhoto: photo, size: .original)
+                    HStack {
+                        Spacer()
+                        
+                        ProgressView()
+                        
+                        Spacer()
                     }
+                } else {
+                    HStack {
+                        ForEach(photos) { photo in
+                            VenuePhotoView(venuePhoto: photo, size: .custom(CGSize(width: 300, height: 300)))
+                        }
+                    }
+                    .padding(.leading, 16)
                 }
             }
+            
+            HStack(alignment: .center) {
+                Image(systemName: "mappin.and.ellipse")
+                    .font(.system(size: 32))
+                
+                Spacer()
+                
+                Text(venue.location.formattedAddress)
+                    .font(.system(size: 16, weight: .light))
+                
+                Spacer()
+                
+                Text(DistanceFormatter.formatted(distance: venue.distance))
+                    .font(.system(size: 16, weight: .light))
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 8)
+            
+            Spacer()
         }
+        .navigationTitle(venue.name)
         .onAppear {
             Task {
                 isLoadingPhotos = true
                 photos = try await service.queryVenuePhotos(venueId: venue.id,
-                                                            limit: 5)
+                                                            limit: 10)
                 isLoadingPhotos = false
             }
         }

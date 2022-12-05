@@ -22,9 +22,18 @@ struct VenueItemView: View {
         VStack(alignment: .center) {
             HStack() {
                 VStack(alignment: .leading) {
-                    Text(venue.name)
-                        .padding(.bottom, 6)
-                        .font(.system(size: 18, weight: .heavy))
+                    HStack(alignment: .center) {
+                        Text(venue.name)
+                            .font(.system(size: 18, weight: .heavy))
+                            .padding(.bottom, 6)
+                            .padding(.trailing, 8)
+                        
+                        NavigationLink(value: venue) {
+                            Image(systemName: "info.circle")
+                                .font(.system(size: 18))
+                                .padding(.bottom, 6)
+                        }
+                    }
                     
                     HStack {
                         Text(venue.formattedCategoriesText())
@@ -48,6 +57,9 @@ struct VenueItemView: View {
                         .redacted(reason: .placeholder)
                 }
             }
+        }
+        .navigationDestination(for: Venue.self) { venue in
+            VenueDetailView(venue: venue)
         }
         .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
         .overlay(

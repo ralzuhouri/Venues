@@ -56,3 +56,14 @@ struct Venue: Codable, Identifiable {
         return text
     }
 }
+
+// MARK: - Hashable
+extension Venue: Hashable {
+    static func == (lhs: Venue, rhs: Venue) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
