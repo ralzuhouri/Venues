@@ -14,7 +14,7 @@ struct VenuesListView: View {
     @StateObject var locationManager = LocationManager(defaultCoordinate: CLLocationCoordinate2D(venueCoordinate: .amsterdam))
     @StateObject var viewModel = VenuesListViewModel()
     
-    @State var isUsingDefaultLocation: Bool = true
+    @State private var isUsingDefaultLocation: Bool = true
     
     var body: some View {
         ScrollView {
@@ -39,7 +39,7 @@ struct VenuesListView: View {
                 Spacer()
                 
                 Button("Search") {
-                    viewModel.searchVenues(location: VenueCoordinate(coordinate: locationManager.coordinate))
+                    viewModel.searchVenues(location: VenueCoordinate(coordinate: locationManager.coordinate), limit: 20)
                 }
             }
             .padding(.horizontal, 16)
@@ -66,11 +66,11 @@ struct VenuesListView: View {
         .navigationTitle("Venues")
         .onAppear {
             locationManager.requestAuthorization()
-            viewModel.searchVenues(location: .amsterdam)
+            viewModel.searchVenues(location: .amsterdam, limit: 20)
         }
         .onChange(of: locationManager.coordinate) { newCoordinate in
             isUsingDefaultLocation = false
-            viewModel.searchVenues(location: VenueCoordinate(coordinate: newCoordinate))
+            viewModel.searchVenues(location: VenueCoordinate(coordinate: newCoordinate), limit: 20)
         }
     }
 }

@@ -14,6 +14,7 @@ struct VenuesApp: App {
             NavigationStack {
                 VenuesListView()
             }
+            .navigationViewStyle(.stack)
         }
     }
 }

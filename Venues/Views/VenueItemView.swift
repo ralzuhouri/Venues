@@ -11,16 +11,8 @@ struct VenueItemView: View {
     let service = VenuesService()
     
     @State var venue: Venue
+    @State var venuePhoto: VenuePhoto?
     @State var photoSize = CGSize(width: 72, height: 72)
-    @State var isLoadingPhoto: Bool = true
-    @State var photoUrl: URL?
-    
-    private var placeholderImage: some View {
-        return ProgressView()
-            .frame(width: photoSize.width, height: photoSize.height)
-            .padding(.trailing, 16)
-            .padding(.vertical, 4)
-    }
 
     init(venue: Venue) {
         _venue = State(initialValue: venue)
@@ -47,20 +39,13 @@ struct VenueItemView: View {
                 
                 Spacer()
                 
-                if let photoUrl = photoUrl {
-                    AsyncImage(url: photoUrl) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: photoSize.width, height: photoSize.height)
-                            .padding(.trailing, 8)
-                            .padding(.vertical, 4)
-                        
-                    } placeholder: {
-                        placeholderImage
-                    }
+                if let venuePhoto = venuePhoto {
+                    VenuePhotoView(venuePhoto: venuePhoto, size: .custom(photoSize))
                 } else {
-                    placeholderImage
+                    VenuePhotoView(venuePhoto: .mock,
+                                   size: .custom(photoSize),
+                                   isPlaceholder: true)
+                        .redacted(reason: .placeholder)
                 }
             }
         }
@@ -78,10 +63,9 @@ struct VenueItemView: View {
                     return
                 }
                 
-                let size = CGSize(width: min(photoSize.width, CGFloat(photo.width)),
-                                  height: min(photoSize.height, CGFloat(photo.height)))
-                
-                photoUrl = URL(string: photo.photoUrl(size: size))
+                venuePhoto = photo
+                photoSize = CGSize(width: min(photoSize.width, CGFloat(photo.width)),
+                                   height: min(photoSize.height, CGFloat(photo.height)))
             }
         }
     }
