@@ -11,7 +11,6 @@ struct VenueItemView: View {
     @State var venue: Venue
     @State private var venuePhoto: VenuePhoto?
     @State private var photoSize = CGSize(width: 72, height: 72)
-    @State private var noPhotoAvailable: Bool = false
     
     private let service = VenuesService()
 
@@ -50,7 +49,7 @@ struct VenueItemView: View {
                 
                 Spacer()
                 
-                if let venuePhoto = venuePhoto, !noPhotoAvailable {
+                if let venuePhoto = venuePhoto {
                     VenuePhotoView(venuePhoto: venuePhoto, size: .custom(photoSize))
                 } else {
                     VenuePhotoView(venuePhoto: .mock,
@@ -73,7 +72,6 @@ struct VenueItemView: View {
                                                                 limit: 1)
                 
                 guard let photo = photos.first else {
-                    noPhotoAvailable = true
                     return
                 }
                 
