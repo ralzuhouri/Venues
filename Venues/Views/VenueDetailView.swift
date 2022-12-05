@@ -21,7 +21,7 @@ struct VenueDetailView: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(venue.formattedCategoriesText())
-                .font(.system(size: 16, weight: .light))
+                .font(AppFonts.regularLight)
                 .padding(.leading, 16)
             
             ScrollView(.horizontal, showsIndicators: true) {
@@ -46,17 +46,17 @@ struct VenueDetailView: View {
             
             HStack(alignment: .center) {
                 Image(systemName: "mappin.and.ellipse")
-                    .font(.system(size: 32))
+                    .font(AppFonts.veryBig)
                 
                 Spacer()
                 
                 Text(venue.location.formattedAddress)
-                    .font(.system(size: 16, weight: .light))
+                    .font(AppFonts.regularLight)
                 
                 Spacer()
                 
                 Text(DistanceFormatter.formatted(distance: venue.distance))
-                    .font(.system(size: 16, weight: .light))
+                    .font(AppFonts.regularLight)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 8)

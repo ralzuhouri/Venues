@@ -22,10 +22,10 @@ struct VenuesListView: View {
             HStack {
                 if isUsingDefaultLocation {
                     Text("Amsterdam")
-                        .font(.system(size: 16, weight: .medium))
+                        .font(AppFonts.regularMedium)
                 } else {
                     Text(locationManager.coordinate.description)
-                        .font(.system(size: 16, weight: .medium))
+                        .font(AppFonts.regularMedium)
                 }
                 
                 LocationButton {
@@ -43,7 +43,7 @@ struct VenuesListView: View {
                     searchVenues(coordinate: locationManager.coordinate)
                 } label: {
                     Image(systemName: "arrow.counterclockwise")
-                        .font(.system(size: 24))
+                        .font(AppFonts.big)
                 }
             }
             .padding(.horizontal, 16)
@@ -56,13 +56,13 @@ struct VenuesListView: View {
                         let errorDescription = viewModel.errorDescription {
                 Text(errorDescription)
                     .foregroundColor(.red)
-                    .font(.system(size: 16, weight: .medium))
+                    .font(AppFonts.regularMedium)
                     .padding(.top, 16)
             } else if let venues = viewModel.venues {
                 if venues.isEmpty {
                     Text("No Venues Found")
                         .foregroundColor(.red)
-                        .font(.system(size: 16, weight: .medium))
+                        .font(AppFonts.regularMedium)
                         .padding(.top, 16)
                 } else {
                     LazyVStack {

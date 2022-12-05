@@ -25,24 +25,24 @@ struct VenueItemView: View {
                 VStack(alignment: .leading) {
                     HStack(alignment: .center) {
                         Text(venue.name)
-                            .font(.system(size: 18, weight: .heavy))
+                            .font(AppFonts.regularHeavy)
                             .padding(.bottom, 6)
                             .padding(.trailing, 8)
                         
                         NavigationLink(value: venue) {
                             Image(systemName: "info.circle")
-                                .font(.system(size: 18))
+                                .font(AppFonts.regularHeavy)
                                 .padding(.bottom, 6)
                         }
                     }
                     
                     HStack {
                         Text(venue.formattedCategoriesText())
-                            .font(.system(size: 12, weight: .light))
+                            .font(AppFonts.small)
                             .padding(.trailing, 8)
                         
                         Text(DistanceFormatter.formatted(distance: venue.distance))
-                            .font(.system(size: 12, weight: .light))
+                            .font(AppFonts.small)
                     }
                 }
                 .padding(.leading, 8)

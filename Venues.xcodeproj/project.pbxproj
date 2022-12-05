@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D0BCE21293E3D8F005B5853 /* AppFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D0BCE20293E3D8F005B5853 /* AppFonts.swift */; };
 		2D2D5948293A18C600C857E5 /* VenueLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5947293A18C600C857E5 /* VenueLocation.swift */; };
 		2D2D594A293A1D6D00C857E5 /* VenueCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D5949293A1D6D00C857E5 /* VenueCategory.swift */; };
 		2D2D594C293A1E3E00C857E5 /* Venue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D594B293A1E3E00C857E5 /* Venue.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2D0BCE20293E3D8F005B5853 /* AppFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFonts.swift; sourceTree = "<group>"; };
 		2D2D5947293A18C600C857E5 /* VenueLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueLocation.swift; sourceTree = "<group>"; };
 		2D2D5949293A1D6D00C857E5 /* VenueCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VenueCategory.swift; sourceTree = "<group>"; };
 		2D2D594B293A1E3E00C857E5 /* Venue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Venue.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				2D2D5974293CF91700C857E5 /* LocationManager.swift */,
 				2D2D5978293CFC1800C857E5 /* VenueCoordinate+CoreLocation.swift */,
 				2D2D597A293CFDD900C857E5 /* CLLocationCoordinate2D+Utility.swift */,
+				2D0BCE20293E3D8F005B5853 /* AppFonts.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				2DF2C68029361049006D5C80 /* VenuesApp.swift in Sources */,
 				2D2D5952293A1F2D00C857E5 /* VenueIcon.swift in Sources */,
 				2D2D5973293CEFAC00C857E5 /* DistanceFormatter.swift in Sources */,
+				2D0BCE21293E3D8F005B5853 /* AppFonts.swift in Sources */,
 				2D2D594A293A1D6D00C857E5 /* VenueCategory.swift in Sources */,
 				2D2D597B293CFDD900C857E5 /* CLLocationCoordinate2D+Utility.swift in Sources */,
 				2D2D596E293AA5CE00C857E5 /* VenueItemView.swift in Sources */,
