@@ -8,14 +8,14 @@
 import Foundation
 
 struct VenueLocation: Codable {
-    let address: String
+    let address: String?
     let country: String
     let crossStreet: String?
     let formattedAddress: String
     let locality: String
     let neighborhood: [String]?
-    let postcode: String
-    let region: String
+    let postcode: String?
+    let region: String?
     
     enum CodingKeys: String, CodingKey {
         case address = "address"
