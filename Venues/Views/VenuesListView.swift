@@ -48,6 +48,12 @@ struct VenuesListView: View {
             }
             .padding(.horizontal, 16)
             
+            if locationManager.authorizationError {
+                Text("Please enable location services in system settings")
+                    .foregroundColor(.red)
+                    .font(AppFonts.regularMedium)
+            }
+            
             if viewModel.isLoading {
                 ProgressView()
                     .foregroundColor(.gray)

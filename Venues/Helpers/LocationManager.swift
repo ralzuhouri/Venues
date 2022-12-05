@@ -8,8 +8,9 @@
 import Foundation
 import CoreLocation
 
-class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
+class LocationManager: NSObject, ObservableObject {
     @Published var coordinate: CLLocationCoordinate2D
+    @Published var authorizationError: Bool = false
     
     private let manager = CLLocationManager()
 
@@ -24,9 +25,33 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
 
     func requestLocation() {
+        determineErrorStatus()
+        
+        guard !authorizationError else {
+            return
+        }
+        
         manager.requestLocation()
     }
+    
+    private func determineErrorStatus() {
+        switch manager.authorizationStatus {
+        case .notDetermined:
+            // Not enabled, but the user can still do it via the location
+            // services popup. This doesn't trigger an error
+            authorizationError = false
+        case .denied, .restricted:
+            authorizationError = true
+        case .authorizedAlways, .authorizedWhenInUse:
+            authorizationError = false
+        @unknown default:
+            assertionFailure("Unhandled authorization status value")
+        }
+    }
+}
 
+// MARK: - CLLocationManagerDelegate
+extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager,
                          didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.first else {
